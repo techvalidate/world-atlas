@@ -71,6 +71,6 @@ shp/ne_%_admin_1_states_provinces_lakes.shp: zip/ne_%_admin_1_states_provinces_l
 
 topo/world-%.json: shp/ne_%_land.shp shp/ne_%_admin_0_countries.shp
 	mkdir -p $(dir $@)
-	$(TOPOJSON) -o $@.tmp -q 1e5 --id-property=+iso_n3 --properties=postal -- land=shp/ne_$*_land.shp countries=shp/ne_$*_admin_0_countries.shp
+	$(TOPOJSON) -o $@.tmp -q 1e6 --id-property=+iso_n3 --properties=iso_a2 -- land=shp/ne_$*_land.shp countries=shp/ne_$*_admin_0_countries.shp
 	$(TOPOMERGE) -o $@ --io=land --oo=land --no-key -- $@.tmp
 	rm -f -- $@.tmp
